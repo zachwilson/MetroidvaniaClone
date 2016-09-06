@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 /**
  *
  * @author Zach Wilson
+ * This game is based off of Metroid and the 2D games tutorial at zetcode.com
  */
 public class Game extends JFrame{
     

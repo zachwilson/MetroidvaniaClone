@@ -24,6 +24,8 @@ public class Wall extends Entity{
         getImageDimensions();
     }
     
+    
+    // Parts of this function were found online and are not my own work
     private Image makeImage(int cols,int rows){  
         int chunks = rows * cols;
         Random rand = new Random();

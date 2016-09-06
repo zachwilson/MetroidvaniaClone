@@ -330,7 +330,6 @@ public class Jumper extends Entity{
     }
     
     public void fall(){
-        System.out.println(isJumping);
         if(isJumping){
             fallCount++;
             if(jetPack){

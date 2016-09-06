@@ -67,20 +67,22 @@ public class World extends JPanel implements ActionListener{
         
         Room room0 = new Room(2,1,0);
         rooms.add(room0);
-        Door door1 = new Door(1580,640,1);
-        door1.direction = RIGHT;
-        room0.add(door1);
+        Door entrance = new Door(1580,640,1);
+        entrance.direction = RIGHT;
+        room0.add(entrance);
        
+        
         jumper = new Jumper(40,660);
         room0.add(jumper);
         shots = jumper.shots;
         
         currRoom = room0;
         entities = room0.entities;
+
         
 //        Room room1 = new Room(1,4,1);
 //        rooms.add(room1);
-//        Door door2 = new Door(0,1440,door1,0);
+//        Door door2 = new Door(0,1440,entrance,0);
 //        room1.add(door2);
 //        Wall platform = new Wall(1,640,12,1);
 //        room1.add(platform);
@@ -124,28 +126,28 @@ public class World extends JPanel implements ActionListener{
 //        platform = new Wall(160,3040,6,1);
 //        room1.add(platform);
 
-        Wall ceiling0 = new Wall(60,-400,82,1);
-        Wall floor0 = new Wall(60,380,82,15);
-        Wall left0 = new Wall(40,-400,2,40);
-        Wall right0 = new Wall(1660,-400,1,32);
-        addWall(ceiling0);
-        addWall(floor0);
-        addWall(left0);
-        addWall(right0);
-        Door entrance = new Door(1660,240,1);
-        entrance.direction = RIGHT;
-        entities.add(entrance);
-        Room room0 = new Room();
-        room0.id = 0;
-        room0.entities = entities;
-        currRoom = room0;
-        room0.top = -400;
-        room0.bottom = 400;
-        room0.left = 40;
-        room0.right = 1680;
-        rooms.add(room0);
-        
-        
+//        Wall ceiling0 = new Wall(60,-400,82,1);
+//        Wall floor0 = new Wall(60,380,82,15);
+//        Wall left0 = new Wall(40,-400,2,40);
+//        Wall right0 = new Wall(1660,-400,1,32);
+//        addWall(ceiling0);
+//        addWall(floor0);
+//        addWall(left0);
+//        addWall(right0);
+//        Door entrance = new Door(1660,240,1);
+//        entrance.direction = RIGHT;
+//        entities.add(entrance);
+//        Room room0 = new Room();
+//        room0.id = 0;
+//        room0.entities = entities;
+//        currRoom = room0;
+//        room0.top = -400;
+//        room0.bottom = 400;
+//        room0.left = 40;
+//        room0.right = 1680;
+//        rooms.add(room0);
+//        
+//        
         Wall ceiling1 = new Wall(0,0,42,1);
         Wall floor1 = new Wall(0,780,42,1);
         Wall left1 = new Wall(0,0,1,32);
@@ -330,7 +332,6 @@ public class World extends JPanel implements ActionListener{
         door1.exit = door2;
         room8.add(door2);
         
-
         setPreferredSize(new Dimension(winW,winH));
         timer = new Timer(DELAY, this);
         timer.start();
@@ -442,10 +443,10 @@ public class World extends JPanel implements ActionListener{
             Entity n = jumper.collisions(e);
             if (!(n.equals(jumper))){
                 if(n.isEnemy()){
-                    Enemy em = (Enemy) n;
+                    Enemy enemy = (Enemy) n;
                     if(!jumper.isInvincible){
-                        if(!em.isElectric || !jumper.teslaArmor){
-                            if(em.direction == RIGHT){
+                        if(!enemy.isElectric || !jumper.teslaArmor){
+                            if(enemy.direction == RIGHT){
                                 jumper.dy = -3;
                                 jumper.dx = 10;
                                 jumper.stunned = true;
@@ -457,7 +458,7 @@ public class World extends JPanel implements ActionListener{
                             }
                         }
                     }
-                    jumper.damage(em.damage);
+                    jumper.damage(enemy.damage);
                 }
                 if(n.isDoor()){
                     Door d = (Door) n;
